@@ -1,3 +1,8 @@
+# Eclipse
+.cproject
+.project
+.settings
+
 # Prerequisites
 *.d
 
@@ -50,3 +55,8 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Particular for this repo
+_install_dir/
+build
+
