@@ -63,11 +63,9 @@ clean:
 ##############################################################################
 
 tests: | .foldertree
-	sed -e 's~<PREFIX>~${PREFIX}~g' -e 's~<PROJECT_DIR>~${PROJECT_DIR}~g' \
-$(PROJECT_DIR)/conf/mc-vod.conf.template > $(PREFIX)/tmp/test_ftp.conf | true
 	@$(MAKE) $@-generic-build-install --no-print-directory \
 SRCDIRS=$(PROJECT_DIR)/src/tests _BUILD_DIR=$(BUILD_DIR)/$@ \
-LDLIBS='$(MCVOD_LDLIBS) $(GTEST_LDLIBS) -lfineftp-serverd -lmcvod' \
+LDLIBS='$(GTEST_LDLIBS) -lpaho-mqtt3c' \
 TARGETFILE='$(BUILD_DIR)/$@/$@.bin' DESTFILE='$(BINDIR)/$@' || exit 1
 
 ##############################################################################
