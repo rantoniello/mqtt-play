@@ -39,8 +39,8 @@ GTEST_LDLIBS = -lstdc++ -lgtest -lgtest_main -lgmock -lgmock_main -lgcov
 
 .PHONY: all clean .foldertree $(PROGRAM_NAME)
 
-all: mosquitto googletest
-	@$(MAKE) $(PROGRAM_NAME)
+all: mosquitto googletest paho
+	tests
 
 clean:
 	@rm -rf $(BUILD_DIR)
