@@ -129,6 +129,20 @@ mosquitto: c-ares-cares openssl cjson | .foldertree
 	WITH_DOCS=no install || exit 1
 
 ##############################################################################
+# Rule for 'paho' library and apps.
+##############################################################################
+
+PAHO_SRCDIRS = $(PROJECT_DIR)/3rdplibs/paho.mqtt.c
+.ONESHELL:
+paho: | .foldertree
+	@$(eval _BUILD_DIR := $(BUILD_DIR)/$@)
+	@mkdir -p "$(_BUILD_DIR)"
+	cmake -DBUILD_STATIC_LIBS=OFF -DCMAKE_INSTALL_PREFIX="$(PREFIX)" -B"$(_BUILD_DIR)" \
+-S"$(PAHO_SRCDIRS)" || exit 1
+	@$(MAKE) -C "$(_BUILD_DIR)" || exit 1
+	@$(MAKE) -C "$(_BUILD_DIR)" install || exit 1
+
+##############################################################################
 # Rule for 'googletest' library
 ##############################################################################
 
